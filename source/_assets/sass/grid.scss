@@ -1,24 +1,22 @@
-// $grid-breakpoints: (
-//   0: 1,
-//   1: 750,
-//   2: 1000,
-//   3: 1400,
-//   4: 1900,
-//   5: 2500,
-//   6: 3800,
-//   7: 5000 // max
-// );
+@keyframes rotating {
+  from {
+    transform: rotate(0deg) translate(-50%, -50%);
+  }
+  to {
+    transform: rotate(360deg) translate(-50%, -50%);
+  }
+}
 
 $grid-max: 5000;
-
 $grid-space: 50;
-//$grid-columns: map-get($grid-breakpoints, length($grid-breakpoints) - 1) / $grid-space;
 $grid-columns: $grid-max / $grid-space;
 $grid-spacing: ($grid-space * 1px);
 $grid-color: #c3598c;
 $grid-bg: #080808;
-@include block('grid') {
+body {
   background: #000;
+}
+@include block('grid') {
   bottom:0;
   height: 100vh;
   left:0;
@@ -26,19 +24,32 @@ $grid-bg: #080808;
   position: absolute;
   width: 100vw;
   perspective: 200px;
-  // Space
-  &::after {
-    content: ' ';
-    display: block;
-    width: 100%;
-    height: 30%;
+  z-index: 2;
+  @include element('space') {
     position: absolute;
+    width: 100vw;
+    height: 30vh;
     top:0;
     left:0;
-    background-image: radial-gradient(circle, transparent 0%, rgba(0,0,0,1) 67%), url('/assets/images/space.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: bottom center;
+    z-index: 1; 
+    filter: blur(1px);
+    overflow: hidden;
+    &::after {
+      content: ' ';
+      display: block;
+      width: 100%;
+      padding-top:100%;
+      position: absolute;
+      top:50%;
+      left:50%;
+      transform: translate(-50%, -50%);
+      transform-origin: 0 0;
+      background-image: radial-gradient(circle, transparent 0%, rgba(0,0,0,1) 75%), url('/assets/images/space-sq.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      animation: rotating 720s ease 0 infinite;
+    }
   }
   // Grid plane
   @include element('plane') {
@@ -102,31 +113,6 @@ $grid-bg: #080808;
         }
       }
     }
-/*
-    @each $key, $bp in $grid-breakpoints {
-      @media screen and (min-width: $bp) {
-        @for $i from round(($bp / $grid-space)) to round((map-get($grid-breakpoints, ($key+1)) / $grid-space)) {
-          @include modifier($i) {
-            display: block;
-          }
-          @if $key+1 > length($grid-breakpoints) {
-            @break;
-          }
-        }
-      }
-    }
-*/
-
-    // @for $i from 0 to (length($grid-breakpoints) - 1) {
-    //   @media screen and (min-width: (map-get($grid-breakpoints, $i) * 1px)) {
-    //     @for $j from round((map-get($grid-breakpoints, $i) / $grid-space)) to round((map-get($grid-breakpoints, $i+1) / $grid-space)) {
-    //       @include modifier($j) {
-    //         display: block;
-    //       }
-    //     }
-    //   }
-    // }
-
 
   }
   // .grid.is-hidden
