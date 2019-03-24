@@ -1,0 +1,36 @@
+@include block('header') {
+  
+}
+
+$logo-count: 10;
+$logo-time: 0.1s;
+@include block('logo') {
+  position: absolute;
+  top:0;
+  left:50%;
+  z-index: 99;
+  transform: translateX(-50%) translateZ(0);
+  width: 1000px;
+  @include element('img') {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    z-index: $logo-count;
+    transform-origin: 50% 75%;
+    transition: opacity $logo-time ease; 
+    transition-delay: $logo-count * $logo-time;
+    @for $i from 1 to $logo-count {
+      @include modifier($i) {
+        top: ($i * 10px);
+        z-index: $logo-count - $i;
+        transform: scale(0.5 / $i);
+        transition-delay: ($logo-count - $i) * $logo-time;
+      }
+    }
+  }
+  @include state('hidden') {
+    .logo__img {
+      opacity: 0;
+    }
+  }
+}
