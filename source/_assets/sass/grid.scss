@@ -23,7 +23,7 @@ body {
   left:0;
   overflow: hidden;
   perspective: 200px;
-  position: absolute;
+  position: fixed;
   width: 100vw;
   z-index: 2;
   @include element('space') {
@@ -31,7 +31,7 @@ body {
     height: 45vh;
     left:0;
     overflow: hidden;
-    position: absolute;
+    position: fixed;
     top:0;
     width: 100vw;
     z-index: 1; 
@@ -60,7 +60,7 @@ body {
     left:50%;
     opacity: 1;
     position: absolute;
-    transform: rotateX(30deg) translateX(-50%) translateZ(-25px);
+    transform: rotateX(30deg) translateX(-50%) translateZ(0px);
     transition: transform 2s ease-in-out;
     width: $grid-max * 1px;
     z-index: 2;
@@ -90,7 +90,7 @@ body {
       box-shadow: 0 0 2px 1px $grid-color;
       content: ' ';
       display: block;
-      height: 100vh;
+      height: 110vh;
       left:0;
       position: absolute;
       top:0;
@@ -119,6 +119,11 @@ body {
   @include state('hidden') {
     .grid__plane {
       transform: rotateX(30deg) translateX(-50%) translateZ(-75px);
+    }
+  }
+  @include state('loaded') {
+    .grid__plane {
+      transition: none;
     }
   }
 }
