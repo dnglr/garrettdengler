@@ -13,6 +13,8 @@ mix.webpackConfig({
 
 mix.js('source/_assets/js/main.js', 'js')
     .sass('source/_assets/sass/main.scss', 'css')
+    .sass('source/_assets/sass/font.woff.scss', 'css')
+    .sass('source/_assets/sass/font.woff2.scss', 'css')
     .options({
         processCssUrls: false,
     }).version();

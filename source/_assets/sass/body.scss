@@ -1,4 +1,7 @@
 @include block('main') {
+  position: relative;
   width: 100%;
   min-height: 100vh;
+  background: #240e28;
+  z-index: 9;
 }
