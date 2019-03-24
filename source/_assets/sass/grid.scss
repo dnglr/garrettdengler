@@ -1,9 +1,9 @@
 @keyframes rotating {
   from {
-    transform: rotate(0deg) translate(-50%, -50%);
+    transform: rotate(0deg) translate3d(-50%, -50%, 0);
   }
   to {
-    transform: rotate(360deg) translate(-50%, -50%);
+    transform: rotate(360deg) translate3d(-50%, -50%, 0);
   }
 }
 
@@ -19,7 +19,7 @@ body {
 }
 @include block('grid') {
   bottom:0;
-  height: 100vh;
+  height: 100%;
   left:0;
   overflow: hidden;
   perspective: 200px;
@@ -28,7 +28,7 @@ body {
   z-index: 2;
   @include element('space') {
     filter: blur(1.5px);
-    height: 45vh;
+    height: 45%;
     left:0;
     overflow: hidden;
     position: fixed;
@@ -48,7 +48,7 @@ body {
       position: absolute;
       top:50%;
       transform-origin: 0 0;
-      transform: translate(-50%, -50%);
+      transform: rotate(0deg) translate3d(-50%, -50%, 0);
       width: 100%;
     }
   }
@@ -60,7 +60,7 @@ body {
     left:50%;
     opacity: 1;
     position: absolute;
-    transform: rotateX(30deg) translateX(-50%) translateZ(0px);
+    transform: rotateX(30deg) rotateY(0deg) rotateZ(0deg) translate3d(-50%, 0, 0px);
     transition: transform 2s ease-in-out;
     width: $grid-max * 1px;
     z-index: 2;
@@ -80,7 +80,7 @@ body {
   }
   // Lines
   @include element('line') {
-    height: 1px;
+    height: 110%;
     position: absolute;
     width: 1px;
     z-index: 2;
@@ -90,7 +90,7 @@ body {
       box-shadow: 0 0 2px 1px $grid-color;
       content: ' ';
       display: block;
-      height: 110vh;
+      height: 100%;
       left:0;
       position: absolute;
       top:0;
@@ -118,7 +118,7 @@ body {
   // .grid.is-hidden
   @include state('hidden') {
     .grid__plane {
-      transform: rotateX(30deg) translateX(-50%) translateZ(-75px);
+      transform: rotateX(30deg) rotateY(0deg) rotateZ(0deg) translate3d(-50%, 0, -75px);
     }
   }
   @include state('loaded') {
