@@ -20,7 +20,11 @@ var Site = {
     var animateGrid = function(){
       if ($(window).scrollTop() > 0) {
         var rot = 30 - ($(window).scrollTop() / 26);
+        var filter = 0.01 * $(window).scrollTop();
         $('.grid__plane').css('transform', 'rotateX(' + ((rot > 0) ? rot : 0) + 'deg) rotateY(0deg) rotateZ(0deg) translate3d(-50%, 0, 0)');
+        if (filter < 8) {
+          $('.grid').css('filter', 'blur('+filter+'px)');
+        }
       }
     };
 
