@@ -1,0 +1,8 @@
+$font-futura: 'Futura', serif;
+
+@include block('type') {
+  @include modifier('title') {
+    font: 700 10vw/1 $font-futura;
+    text-transform: uppercase;
+  }
+}
