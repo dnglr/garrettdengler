@@ -53,6 +53,7 @@ body {
       transform-origin: 0 0;
       transform: rotate(0deg) translate3d(-50%, -50%, 0);
       width: 100%;
+      will-change: transform;
     }
   }
   // Grid plane
@@ -66,6 +67,7 @@ body {
     transform: rotateX(30deg) rotateY(0deg) rotateZ(0deg) translate3d(-50%, 0, 0px);
     transition: transform 2s ease-in-out;
     width: $grid-max * 1px;
+    will-change: transform;
     z-index: 2;
     // Fade
     &::after {
@@ -116,6 +118,21 @@ body {
         }
       }
     }
+
+  }
+  @include element('light') {
+    background: lighten($grid-color, 10%);
+    box-shadow: 0 0 2px 4px lighten($grid-color, 5%);
+    display: block;
+    height: 1px;
+    opacity: 1;
+    position: absolute;
+    transform: translate(0, 0) translateZ(0);
+    transition: transform 6s ease-in-out, opacity 0.75s ease;
+    width: 1px;
+    z-index: 9;
+    border-radius: 100%;
+    will-change: transform;
 
   }
   // .grid.is-hidden
