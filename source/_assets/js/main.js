@@ -14,7 +14,7 @@ var Site = {
       tempLogo.appendTo('.logo');
       setTimeout(function(){
         $('.logo').find('.js-logo').last().remove();
-      }, (numLogos * 200) - (i * 100))
+      }, (numLogos * 250) - (i * 100))
     }
     setTimeout(function(){
       $('.grid.is-hidden, .logo.is-hidden').removeClass('is-hidden');
@@ -38,7 +38,7 @@ var Site = {
             } else {
               transform = 'translateX(' + ((direction === 0) ? (-1 * parseInt(light.css('left'))) : ($(window).height() - parseInt(light.css('left')))) + 'px)';
             }
-            light.css('transform', transform + ' translateZ(0)');
+            light.css('transform', transform);
           }, 66);
           setTimeout(function(){
             light.css('opacity',0);
@@ -58,6 +58,8 @@ var Site = {
         if (filter <= 10) {
           $('.grid').css('filter', 'blur('+filter+'px)');
         }
+      } else {
+        $('.grid, .grid__plane').removeAttr('style');
       }
     };
 
