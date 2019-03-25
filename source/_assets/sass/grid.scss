@@ -122,6 +122,7 @@ body {
   }
   @include element('light') {
     background: lighten($grid-color, 10%);
+    border-radius: 100%;
     box-shadow: 0 0 2px 4px lighten($grid-color, 5%);
     display: block;
     height: 1px;
@@ -131,7 +132,6 @@ body {
     transition: transform 6s ease-in-out, opacity 0.75s ease;
     width: 1px;
     z-index: 9;
-    border-radius: 100%;
     // will-change: transform;
 
   }

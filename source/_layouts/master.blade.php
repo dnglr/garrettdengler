@@ -4,7 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Garrett Dengler | Charlotte, NC Web Developer</title>
+        <meta name="description" content="Garrett Dengler is a Charlotte, NC based Senior Full Stack Web Developer focused on Laravel PHP development.">
+        <meta name="keywords" content="web developer, charlotte nc, charlotte web developer, laravel, php">
         <link rel="stylesheet" href="{{ mix('css/main.css', 'assets/build') }}">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:500" rel="stylesheet">
         <script type="text/javascript">
             var supportsWoff2=function(){if(!("FontFace"in window))return!1;var A=new FontFace("t",'url( "data:font/woff2;base64,d09GMgABAAAAAADwAAoAAAAAAiQAAACoAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAABmAALAogOAE2AiQDBgsGAAQgBSAHIBuDAciO1EZ3I/mL5/+5/rfPnTt9/9Qa8H4cUUZxaRbh36LiKJoVh61XGzw6ufkpoeZBW4KphwFYIJGHB4LAY4hby++gW+6N1EN94I49v86yCpUdYgqeZrOWN34CMQg2tAmthdli0eePIwAKNIIRS4AGZFzdX9lbBUAQlm//f262/61o8PlYO/D1/X4FrWFFgdCQD9DpGJSxmFyjOAGUU4P0qigcNb82GAAA" ) format( "woff2" )',{});return A.load().catch(function(){}),"loading"==A.status||"loaded"==A.status}();
             var fontPath = supportsWoff2 ? "{{ mix('css/font.woff2.css', 'assets/build') }}" : "{{ mix('css/font.woff.css', 'assets/build') }}";
@@ -13,12 +17,28 @@
         <noscript><link rel="stylesheet" href="{{ mix('css/font.woff.css', 'assets/build') }}"></noscript>
     </head>
     <body>
-        @include('_partials.header')
-        <main class="main">
+        @include('_partials.header', ['page_name' => $page_name])
+        <main class="main main--{{$page_name ?? 'generic'}}">
             @yield('body')
         </main>
         @include('_partials.footer')
         <script   src="https://code.jquery.com/jquery-3.3.1.slim.min.js"   integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="   crossorigin="anonymous"></script>
         <script src="{{ mix('js/main.js', 'assets/build') }}"></script>
+        <script type="application/ld+json">
+            {
+              "@context": "http://schema.org",
+              "@type": "Person",
+              "image": "assets/images/garrett.jpg",
+              "jobTitle": "Senior Developer",
+              "name": "Garrett Dengler",
+              "alumniOf": "UNC Charlotte",
+              "gender": "male",
+              "url": "https://garrett.dnglr.com",
+                "sameAs" : ["https://www.linkedin.com/in/garrettdengler",
+              "https://twitter.com/garrettdengler",
+              "https://instagram.com/garrettdengler",
+              "https://github.com/dnglr"]
+            }
+        </script>
     </body>
 </html>

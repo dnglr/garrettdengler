@@ -1,10 +1,10 @@
-@extends('_layouts.master')
+@extends('_layouts.master', ['page_name' => 'home'])
 
 @section('body')
-
-<h1 class="type--title">Hello World</h1>
-
-
-<img src="/assets/images/garrett-dk.png" alt="Garrett Dengler">
+{{-- 
+<div class="u-text-center">
+  <h1 class="type--heading">Charlotte, NC<br>Web Developer</h1>
+  <h2 class="type--subheading">More coming soon!</h2>
+</div> --}}
 
 @endsection
