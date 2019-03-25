@@ -38,10 +38,14 @@ var Site = {
       window.cancelAnimationFrame(window.animateGrid);
       if ($(window).scrollTop() > 0) {
         var rot = 30 - ($(window).scrollTop() / 26);
-        var filter = 0.01 * $(window).scrollTop();
+        // var filter = 0.01 * $(window).scrollTop();
+        var filter = ( $(window).height() - ($(window).scrollTop() / 2) ) / $(window).height() * 100;
+        console.log(filter);
         $('.grid__plane').css('transform', 'rotateX(' + ((rot > 0) ? rot : 0) + 'deg) rotateY(0deg) rotateZ(0deg) translate3d(-50%, 0, 0)');
-        if (filter <= 10) {
-          $('.grid').css('filter', 'blur('+filter+'px)');
+        // if (filter <= 10) {
+        if (filter >= 40) {
+          $('.grid').css('filter', 'brightness('+filter+'%');
+          // $('.grid').css('filter', 'blur('+filter+'px)');
         }
       } else {
         $('.grid, .grid__plane').removeAttr('style');

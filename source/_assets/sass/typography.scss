@@ -7,7 +7,7 @@ body {
 
 @include block('type') {
   @include modifier('title') {
-    font: 700 10vw/1 $font-futura;
+    font: 700 8vw/1 $font-futura;
     text-transform: uppercase;
   }
   @include modifier('heading') {
@@ -15,7 +15,7 @@ body {
     text-transform: uppercase;
   }
   @include modifier('subheading') {
-    font: 700 3vw/1 $font-futura;
+    font: 700 4vw/1 $font-futura;
     text-transform: uppercase;
   }
 }

@@ -1,25 +1,39 @@
 @include block('header') {
   position: relative;
   z-index: 999;
+  width: 100%;
+  height: 100vh;
 
-  @include state('splash') {
+  @include element('nav') {
+    position: absolute;
+    top:0;
+    left:0;
     width: 100%;
-    height: 100vh;
-    .logo {
-      left:50%;
-      position: absolute;
-      top:50%;
-      transform: translate(-50%, -50%);
-      width: 60%;
+    height: 100%;
+    @include state('sticky') {
+      position: fixed;
+      height: 75px;
+      transform: translateY(-100%);
+      .logo {
+        position: static;
+        height: 50px;
+        width: auto;
+        transform: none;
+      }
     }
   }
+
 }
 
 $logo-count: 10;
 $logo-time: 0.1s;
 @include block('logo') {
+  left:50%;
   max-width: 100%;
-  position: relative;
+  position: absolute;
+  top:50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
   @include element('img') {
     height: auto;
     left:0;
