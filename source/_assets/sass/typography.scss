@@ -2,7 +2,7 @@ $font-futura: 'Futura', sans-serif;
 $font-roboto: 'Roboto', sans-serif;
 
 body {
-  font: 500 16px/1.125 $font-roboto;
+  font: 500 18px/1.5 $font-roboto;
 }
 
 @include block('type') {
@@ -15,7 +15,7 @@ body {
     text-transform: uppercase;
   }
   @include modifier('subheading') {
-    font: 700 4vw/1 $font-futura;
+    font: 700 4vw/1.125 $font-futura;
     text-transform: uppercase;
   }
 }

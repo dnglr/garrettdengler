@@ -23,7 +23,7 @@ var Site = {
         if (axis === 1) {
           transform = 'translateY(' + ((direction === 0) ? (-1 * parseInt(light.css('top'))) : ($(window).height() - parseInt(light.css('top')))) + 'px)';
         } else {
-          transform = 'translateX(' + ((direction === 0) ? (-1 * parseInt(light.css('left'))) : ($(window).height() - parseInt(light.css('left')))) + 'px)';
+          transform = 'rotate(90deg) translateY(' + ((direction === 0) ? (-1 * parseInt(light.css('left'))) : ($(window).height() - parseInt(light.css('left')))) + 'px)';
         }
         light.css('transform', transform);
       }, 66);
@@ -40,7 +40,6 @@ var Site = {
         var rot = 30 - ($(window).scrollTop() / 26);
         // var filter = 0.01 * $(window).scrollTop();
         var filter = ( $(window).height() - ($(window).scrollTop() / 2) ) / $(window).height() * 100;
-        console.log(filter);
         $('.grid__plane').css('transform', 'rotateX(' + ((rot > 0) ? rot : 0) + 'deg) rotateY(0deg) rotateZ(0deg) translate3d(-50%, 0, 0)');
         // if (filter <= 10) {
         if (filter >= 40) {
@@ -78,6 +77,17 @@ var Site = {
       }, numLogos*300);
     }, 300);
 
+    document.addEventListener('scroll', (evt) => {
+      if ($('window').scrollTop() > $(window).height() * 0.75 ) {
+        if (!$('.header__nav').hasClass('is-sticky')) {
+          window.requestAnimationFrame(function(){
+            $('.header__nav').addClass('is-sticky');
+          });
+        }
+      } else {
+        $('.header__nav').removeClass('is-sticky');
+      }
+    });
   },
   pageGeneric : function() {
     setTimeout(function(){

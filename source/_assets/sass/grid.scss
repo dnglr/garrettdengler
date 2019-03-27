@@ -12,8 +12,8 @@ $grid-space: 50;
 $grid-columns: $grid-max / $grid-space;
 $grid-spacing: ($grid-space * 1px);
 // $grid-color: #c3598c;
-$grid-color: #d8247c;
-$grid-bg: #240e28;
+$grid-color: $pink;
+$grid-bg: $purple;
 body {
   background: #000;
 }
@@ -126,7 +126,7 @@ body {
   @include element('light') {
     background: lighten($grid-color, 10%);
     border-radius: 100%;
-    box-shadow: 0 0 2px 4px lighten($grid-color, 5%);
+    box-shadow: 0 0 1px 3px lighten($grid-color, 5%);
     display: block;
     height: 1px;
     opacity: 1;

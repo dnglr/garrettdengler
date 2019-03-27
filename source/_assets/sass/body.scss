@@ -2,9 +2,37 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  // background: #240e28;
+  // background: $purple;
   z-index: 9;
   color: #FFF;
   padding: 50px;
-  margin: 0;
+  margin: 0 auto;
+}
+
+@include block('container') {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@include block('about-img') {
+  width: 240px;
+  height: 240px;
+  border-radius: 100%;
+  margin:0 auto;
+  position: relative;
+  overflow: hidden;
+  border: solid 5px #FFF;
+  background: $purple;
+  @include element('image') {
+    display: block;
+    position: absolute;
+    bottom: 5px;
+    left:50%;
+    transform: translateX(-50%);
+    border-radius: 100%;
+    overflow: hidden;
+    z-index: 2;
+    width: 110%;
+    height: auto;
+  }
 }
