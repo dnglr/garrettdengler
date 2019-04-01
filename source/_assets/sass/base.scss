@@ -1,8 +1,18 @@
+$purple: #240e28;
+$pink: #d8247c;
+
 * {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-$purple: #240e28;
-$pink: #d8247c;
+html, body {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+}
+
+a {
+  color: inherit;
+}

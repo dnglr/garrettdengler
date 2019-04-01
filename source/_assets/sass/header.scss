@@ -7,11 +7,19 @@
   }
 }
 
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
 @include block('header') {
   position: relative;
   z-index: 999;
   width: 100%;
   height: 100vh;
+  font: normal 0/1 $font-bit;
+  text-transform: uppercase;
 
   @include element('nav') {
     position: absolute;
@@ -19,20 +27,127 @@
     left:0;
     width: 100%;
     height: 100%;
+
+    @include child('toggle') {
+      display: none;
+      position: absolute;
+      top: 13px;
+      right: 15px;
+      z-index: 4;
+      @media screen and (min-width: 767px) {
+        display: none !important;
+      }
+    }
+
+    @include child('list') {
+      background-color: #000;
+      color: #FFF;
+      display: none;
+      font-size: 16px;
+      height: 100vh;
+      left:0;
+      list-style: none;
+      margin:0;
+      padding:0;
+      position: absolute;
+      top:0;
+      width: 100%;
+      z-index: 3;
+      @include state('active') {
+        align-content: center;
+        align-items: center;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+
+    @include child('item') {
+      display: block;
+      padding: 10px;
+      a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s ease-in-out;
+        &:hover {
+          color: $pink;
+        }
+      }
+      @media screen and (min-width: 760px) {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+
     @include state('sticky') {
-      position: fixed;
-      height: 75px;
-      transform: translateY(-100%);
       animation: stickynav 0.75s ease-in-out 0.25s 1 normal forwards;
-      .logo {
-        position: static;
+      background-color: rgba(#000, 0.95);
+      height: 80px;
+      padding: 15px 30px;
+      position: fixed;
+      transform: translateY(-100%);
+      @include block('logo') {
+        display: inline-block;
         height: 50px;
-        width: auto;
+        left:0;
+        position: relative;
+        top:0;
         transform: none;
+        vertical-align: middle;
+        width: 130px;
+        z-index: 1;
+        @include element('img') {
+          height: 100%;
+          width: auto;
+        }
+      }
+      .header__nav__toggle {
+        display: block;
+      }
+      
+      .header__nav__list {
+        @media screen and (min-width: 767px) {
+          background-color: transparent;
+          display: inline-block !important;
+          height: auto;
+          position: static;
+          text-align: right;
+          vertical-align: middle;
+          width: calc(100% - 130px);
+        }
+      }
+
+      .header__start {
+        opacity: 0;
       }
     }
   }
 
+  @include element('start') {
+    animation: blink 1s steps(5, start) infinite;
+    bottom: 50px;
+    color: #FFF;
+    display: none;
+    font-size: 24px;
+    height: auto;
+    left:50%;
+    opacity: 1;
+    padding: 10px;
+    position: absolute;
+    text-decoration: none;
+    transform: translate(-50%);
+    transition: opacity 0.5s ease-in-out;
+  }
+
+}
+
+@include block('footer') {
+  color: #FFF;
+  font: normal 13px/1.5 $font-bit;
+  padding: 25px 50px;
+  position: relative;
+  text-transform: uppercase;
+  z-index: 9;
 }
 
 $logo-count: 10;

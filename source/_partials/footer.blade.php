@@ -1,5 +1,6 @@
-<footer class="footer">
+<footer class="footer u-text-center">
 
+  <p>Crafted in Charlotte, North Carolina</p>
 
 </footer>
 <div class="grid__space" aria-hidden="true"></div>

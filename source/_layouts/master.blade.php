@@ -4,11 +4,26 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Garrett Dengler | Charlotte, NC Web Developer</title>
-        <meta name="description" content="Garrett Dengler is a Charlotte, NC based Senior Full Stack Web Developer focused on Laravel PHP development.">
-        <meta name="keywords" content="web developer, charlotte nc, charlotte web developer, laravel, php">
+        <meta name="description" content="{{ $page->meta_description ?? $page->siteDescription }}">
+        <meta name="keywords" content="{{ $page->siteKeywords }} ">
+        <meta property="og:title" content="{{ $page->title ?  $page->title . ' | ' : '' }}{{ $page->siteName }}"/>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ $page->getUrl() }}"/>
+        <meta property="og:description" content="{{ $page->siteDescription }}" />
+
+        <title>{{ $page->title ?  $page->title . ' | ' : '' }}{{ $page->siteName }}</title>
+
+        <link rel="home" href="{{ $page->baseUrl }}">
+        <link rel="icon" href="/favicon.ico">
+        <link href="/blog/feed.atom" type="application/atom+xml" rel="alternate" title="{{ $page->siteName }} Atom Feed">
+
+        @stack('meta')
+
+        @if ($page->production)
+            <!-- Insert analytics code here -->
+        @endif
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto+Mono|Roboto:500" rel="stylesheet">
         <link rel="stylesheet" href="{{ mix('css/main.css', 'assets/build') }}">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:500" rel="stylesheet">
         <script type="text/javascript">
             var supportsWoff2=function(){if(!("FontFace"in window))return!1;var A=new FontFace("t",'url( "data:font/woff2;base64,d09GMgABAAAAAADwAAoAAAAAAiQAAACoAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAABmAALAogOAE2AiQDBgsGAAQgBSAHIBuDAciO1EZ3I/mL5/+5/rfPnTt9/9Qa8H4cUUZxaRbh36LiKJoVh61XGzw6ufkpoeZBW4KphwFYIJGHB4LAY4hby++gW+6N1EN94I49v86yCpUdYgqeZrOWN34CMQg2tAmthdli0eePIwAKNIIRS4AGZFzdX9lbBUAQlm//f262/61o8PlYO/D1/X4FrWFFgdCQD9DpGJSxmFyjOAGUU4P0qigcNb82GAAA" ) format( "woff2" )',{});return A.load().catch(function(){}),"loading"==A.status||"loaded"==A.status}();
             var fontPath = supportsWoff2 ? "{{ mix('css/font.woff2.css', 'assets/build') }}" : "{{ mix('css/font.woff.css', 'assets/build') }}";
@@ -16,13 +31,13 @@
         </script>
         <noscript><link rel="stylesheet" href="{{ mix('css/font.woff.css', 'assets/build') }}"></noscript>
     </head>
-    <body>
-        @include('_partials.header', ['page_name' => $page_name])
-        <main class="main main--{{$page_name ?? 'generic'}}">
+    <body class="body body--{{$page_name ?? 'generic'}} " >
+        @include('_partials.header', ['page_name' => $page_name ?? 'generic'])
+        <main class="main">
             @yield('body')
         </main>
         @include('_partials.footer')
-        <script   src="https://code.jquery.com/jquery-3.3.1.slim.min.js"   integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="   crossorigin="anonymous"></script>
+        <script   src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
         <script src="{{ mix('js/main.js', 'assets/build') }}"></script>
         <script type="application/ld+json">
             {

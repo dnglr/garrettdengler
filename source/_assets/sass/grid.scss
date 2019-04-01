@@ -14,9 +14,7 @@ $grid-spacing: ($grid-space * 1px);
 // $grid-color: #c3598c;
 $grid-color: $pink;
 $grid-bg: $purple;
-body {
-  background: #000;
-}
+
 @include block('grid') {
   backface-visibility: hidden;
   bottom:0;

@@ -1,21 +1,25 @@
-$font-futura: 'Futura', sans-serif;
-$font-roboto: 'Roboto', sans-serif;
-
+$font-heading: 'Futura', sans-serif;
+$font-body: 'Roboto', sans-serif;
+$font-mono: 'Roboto Mono', monospace;
+$font-bit: 'Press Start 2P', monospace;
 body {
-  font: 500 18px/1.5 $font-roboto;
+  font: 500 20px/1.5 $font-body;
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
+  }
 }
 
 @include block('type') {
   @include modifier('title') {
-    font: 700 8vw/1 $font-futura;
+    font: 700 8vw/1 $font-heading;
     text-transform: uppercase;
   }
   @include modifier('heading') {
-    font: 700 6vw/1 $font-futura;
+    font: 700 2.5em/1 $font-heading;
     text-transform: uppercase;
   }
   @include modifier('subheading') {
-    font: 700 4vw/1.125 $font-futura;
+    font: 700 1.75em/1.125 $font-heading;
     text-transform: uppercase;
   }
 }
@@ -23,3 +27,13 @@ body {
 .u-text-center {
   text-align: center;
 }
+
+.u-text-left {
+  text-align: left;
+}
+
+.u-text-right {
+  text-align: right;
+}
+
+
