@@ -12,25 +12,26 @@ $grid-space: 50;
 $grid-columns: $grid-max / $grid-space;
 $grid-spacing: ($grid-space * 1px);
 // $grid-color: #c3598c;
-$grid-color: #d8247c;
-$grid-bg: #240e28;
-body {
-  background: #000;
-}
+$grid-color: $pink;
+$grid-bg: $purple;
+
 @include block('grid') {
+  backface-visibility: hidden;
   bottom:0;
+  // filter: blur(0px);
+  filter: brightness(100%);
   height: 100%;
   left:0;
   overflow: hidden;
   perspective: 200px;
   position: fixed;
-  width: 100vw;
-  z-index: 2;
-  filter: blur(0px);
+  transform: translateZ(0);
   transition: filter 0.2s ease;
+  width: 100vw;
   will-change: filter;
+  z-index: 2;
   @include element('space') {
-    filter: blur(1.5px);
+    // filter: blur(1.5px);
     height: 45%;
     left:0;
     overflow: hidden;
@@ -40,7 +41,7 @@ body {
     z-index: 1; 
     &::after {
       animation: rotating 1080s ease infinite;
-      background-image: radial-gradient(circle, transparent 0%, rgba(0,0,0,1) 75%), url('/assets/images/space-sq.jpg');
+      background-image: radial-gradient(circle, transparent 0%, rgba(0,0,0,1) 75%), url('/assets/images/space-blur.jpg');
       background-position: center center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -79,7 +80,7 @@ body {
       position: absolute;
       top:0;
       width: 100%;
-      z-index: 3;
+      z-index: 4;
     }
 
   }
@@ -123,7 +124,7 @@ body {
   @include element('light') {
     background: lighten($grid-color, 10%);
     border-radius: 100%;
-    box-shadow: 0 0 2px 4px lighten($grid-color, 5%);
+    box-shadow: 0 0 1px 3px lighten($grid-color, 5%);
     display: block;
     height: 1px;
     opacity: 1;
@@ -131,7 +132,7 @@ body {
     transform: translate(0, 0);
     transition: transform 6s ease-in-out, opacity 0.75s ease;
     width: 1px;
-    z-index: 9;
+    z-index: 3;
     // will-change: transform;
 
   }
@@ -144,6 +145,13 @@ body {
   @include state('loaded') {
     .grid__plane {
       transition: none;
+    }
+  }
+  @include modifier('interior') {
+    will-change: none;
+    filter: brightness(33%);
+    .grid__plane {
+      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate3d(-50%, 0, 0px);
     }
   }
 }
