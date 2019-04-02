@@ -9,7 +9,8 @@
 
 @section('body')
 
-    <h1>{{ $page->title }}</h1>
+<article class="container">
+    <h1 class="type--heading">{{ $page->title }}</h1>
 
     <p>{{ $page->author }}  •  {{ date('F j, Y', $page->date) }}</p>
 
@@ -35,4 +36,5 @@
             @endif
         </div>
     </nav>
+</article>
 @endsection
