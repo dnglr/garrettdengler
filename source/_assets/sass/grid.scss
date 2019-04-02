@@ -147,4 +147,11 @@ $grid-bg: $purple;
       transition: none;
     }
   }
+  @include modifier('interior') {
+    will-change: none;
+    filter: brightness(33%);
+    .grid__plane {
+      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate3d(-50%, 0, 0px);
+    }
+  }
 }

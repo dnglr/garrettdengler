@@ -3,7 +3,7 @@
         {{ $post->getDate()->format('F j, Y') }}
     </p>
 
-    <h2><a href="{{ $post->getUrl() }}"
+    <h2 class="type--subheading"><a href="{{ $post->getUrl() }}"
             title="Read more - {{ $post->title }}"
             class=""
         >{{ $post->title }}</a>

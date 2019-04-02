@@ -17,7 +17,6 @@
   position: relative;
   z-index: 999;
   width: 100%;
-  height: 100vh;
   font: normal 0/1 $font-bit;
   text-transform: uppercase;
 
@@ -137,6 +136,10 @@
     text-decoration: none;
     transform: translate(-50%);
     transition: opacity 0.5s ease-in-out;
+  }
+
+  @include modifier('splash') {
+    height: 100vh;
   }
 
 }
