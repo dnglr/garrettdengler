@@ -1,17 +1,14 @@
-let mix = require('laravel-mix');
-let build = require('./tasks/build.js');
+const mix = require('laravel-mix');
+require('laravel-mix-jigsaw');
+require('laravel-mix-purgecss');
 
 mix.disableSuccessNotifications();
 mix.setPublicPath('source/assets/build');
-mix.webpackConfig({
-    plugins: [
-        build.jigsaw,
-        build.browserSync(),
-        build.watch(['source/**/*.md', 'source/**/*.php', 'source/**/*.scss', '!source/**/_tmp/*']),
-    ]
-});
 
-mix.js('source/_assets/js/main.js', 'js')
+mix.jigsaw({
+        browserSync: false
+    })
+    .js('source/_assets/js/main.js', 'js')
     .sass('source/_assets/sass/main.scss', 'css')
     .sass('source/_assets/sass/font.woff.scss', 'css')
     .sass('source/_assets/sass/font.woff2.scss', 'css')
