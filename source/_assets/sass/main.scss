@@ -11,6 +11,7 @@ $hamburger-types: (
   emphatic,
 );
 @import 'node_modules/hamburgers/_sass/hamburgers/hamburgers.scss';
+@import 'hamburgers';
 @import 'bemify';
 @import 'normalize';
 @import 'typography';
