@@ -38,6 +38,10 @@
         </main>
         @include('_partials.footer')
         <script   src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            window.gridjs = "{{ mix('js/grid.js', 'assets/build') }}";
+        </script>
+        <script src="{{ mix('js/grid.js', 'assets/build') }}"></script>
         <script src="{{ mix('js/main.js', 'assets/build') }}"></script>
         <script type="application/ld+json">
             {
