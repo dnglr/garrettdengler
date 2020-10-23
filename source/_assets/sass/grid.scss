@@ -1,16 +1,25 @@
 @keyframes rotating {
   from {
-    transform: rotate(0deg) translate3d(-50%, -50%, 0);
+    transform: rotate(0deg) translate(-50%, -50%);
   }
   to {
-    transform: rotate(360deg) translate3d(-50%, -50%, 0);
+    transform: rotate(360deg) translate(-50%, -50%);
   }
 }
 
-$grid-max: 5000;
+@keyframes gridMove {
+  0%{
+    transform:  translateY(0%);
+  }
+  100%{
+    transform:  translateY(50px);
+  }
+}
+
+$grid-max: 200vw;
 $grid-space: 50;
 $grid-columns: $grid-max / $grid-space;
-$grid-spacing: ($grid-space * 1px);
+// $grid-spacing: ($grid-space * 1px);
 // $grid-color: #c3598c;
 $grid-color: $pink;
 $grid-bg: $purple;
@@ -20,7 +29,7 @@ $grid-bg: $purple;
   bottom:0;
   // filter: blur(0px);
   filter: brightness(100%);
-  height: 100%;
+  height: 100vh;
   left:0;
   overflow: hidden;
   perspective: 200px;
@@ -30,6 +39,7 @@ $grid-bg: $purple;
   width: 100vw;
   will-change: filter;
   z-index: 2;
+
   @include element('space') {
     // filter: blur(1.5px);
     height: 45%;
@@ -37,6 +47,7 @@ $grid-bg: $purple;
     overflow: hidden;
     position: fixed;
     top:0;
+    transform: translateZ(0);
     width: 100vw;
     z-index: 1; 
     &::after {
@@ -52,11 +63,12 @@ $grid-bg: $purple;
       position: absolute;
       top:50%;
       transform-origin: 0 0;
-      transform: rotate(0deg) translate3d(-50%, -50%, 0);
+      transform: rotate(0deg) translate(-50%, -50%);
       width: 100%;
       will-change: transform;
     }
   }
+
   // Grid plane
   @include element('plane') {
     background: $grid-bg;
@@ -67,15 +79,29 @@ $grid-bg: $purple;
     position: absolute;
     transform: rotateX(30deg) rotateY(0deg) rotateZ(0deg) translate3d(-50%, 0, 0px);
     transition: transform 2s ease-in-out;
-    width: $grid-max * 1px;
+    // width: $grid-max * 1px;
+    width: $grid-max;
     will-change: transform;
     z-index: 2;
-    // Fade
-    &::after {
-      background-image: radial-gradient(transparent, #000);
+    &::before {
       content: ' ';
       display: block;
-      height: 150%;
+      position: absolute;
+      top:0;
+      left:0;
+      z-index: 3;
+      width: 100%;
+      height: 100%;
+      background-size: 50px 50px;
+      background-image: linear-gradient(0deg, transparent 24%, rgba($grid-color, 0.5) 25%, rgba($grid-color, 0.9) 26%, transparent 27%, transparent 74%, rgba($grid-color, 0.5) 75%, rgba($grid-color, 0.9) 76%, transparent 77%, transparent),
+                        linear-gradient(90deg, transparent 24%, rgba($grid-color, 0.75) 25%, rgba($grid-color, 0.25) 26%, transparent 27%, transparent 74%, rgba($grid-color, 0.75) 75%, rgba($grid-color, 0.25) 76%, transparent 77%, transparent);
+    }
+    // Fade
+    &::after {
+      background-image: radial-gradient(rgba(0,0,0,0), rgba(0,0,0,0.99));
+      content: ' ';
+      display: block;
+      height: 100%;
       left:0;
       position: absolute;
       top:0;
@@ -84,58 +110,59 @@ $grid-bg: $purple;
     }
 
   }
-  // Lines
-  @include element('line') {
-    height: 110%;
-    position: absolute;
-    width: 1px;
-    z-index: 2;
-    // display: none;
-    &::before, &::after {
-      background-color: lighten($grid-color, 2%);
-      box-shadow: 0 0 2px 1px $grid-color;
-      content: ' ';
-      display: block;
-      height: 100%;
-      left:0;
-      position: absolute;
-      top:0;
-      width: 1px;
-    }
-    // horizontal lines
-    &::after {
-      height: $grid-max * 1px;
-      transform-origin: top;
-      transform: rotate(-90deg);
-    }
+  // // Lines
+  // @include element('line') {
+  //   height: 110%;
+  //   position: absolute;
+  //   width: 1px;
+  //   z-index: 2;
+  //   // display: none;
+  //   &::before, &::after {
+  //     background-color: lighten($grid-color, 2%);
+  //     box-shadow: 0 0 2px 1px $grid-color;
+  //     content: ' ';
+  //     display: block;
+  //     height: 100%;
+  //     left:0;
+  //     position: absolute;
+  //     top:0;
+  //     width: 1px;
+  //     z-index: 1;
+  //   }
+  //   // horizontal lines
+  //   &::after {
+  //     height: $grid-max * 1px;
+  //     transform-origin: top;
+  //     transform: rotate(-90deg);
+  //   }
 
-    // generate lines
-    @for $i from 0 to $grid-columns {
-      @include modifier($i) {
-        left: ($i * $grid-spacing);
-        &::after {
-          // top: ($i * $grid-spacing);
-          transform: rotate(-90deg) translate((-1 * $i * $grid-spacing), (-1 * $i * $grid-spacing))
-        }
-      }
-    }
+  //   // generate lines
+  //   @for $i from 0 to $grid-columns {
+  //     @include modifier($i) {
+  //       left: ($i * $grid-spacing);
+  //       &::after {
+  //         // top: ($i * $grid-spacing);
+  //         transform: rotate(-90deg) translate((-1 * $i * $grid-spacing), (-1 * $i * $grid-spacing))
+  //       }
+  //     }
+  //   }
 
-  }
-  @include element('light') {
-    background: lighten($grid-color, 10%);
-    border-radius: 100%;
-    box-shadow: 0 0 1px 3px lighten($grid-color, 5%);
-    display: block;
-    height: 1px;
-    opacity: 1;
-    position: absolute;
-    transform: translate(0, 0);
-    transition: transform 6s ease-in-out, opacity 0.75s ease;
-    width: 1px;
-    z-index: 3;
-    // will-change: transform;
+  // }
+  // @include element('light') {
+  //   background: lighten($grid-color, 10%);
+  //   border-radius: 100%;
+  //   box-shadow: 0 0 1px 3px lighten($grid-color, 5%);
+  //   display: block;
+  //   height: 1px;
+  //   opacity: 0;
+  //   position: absolute;
+  //   transform: translate(0, 0);
+  //   transition: transform 6s ease-in-out, opacity 0.75s ease;
+  //   width: 1px;
+  //   z-index: 3;
+  //   will-change: transform, opacity;
 
-  }
+  // }
   // .grid.is-hidden
   @include state('hidden') {
     .grid__plane {
@@ -145,6 +172,10 @@ $grid-bg: $purple;
   @include state('loaded') {
     .grid__plane {
       transition: none;
+      &::before {
+        animation: gridMove 1s linear;
+        animation-iteration-count: infinite;
+      }
     }
   }
   @include modifier('interior') {
