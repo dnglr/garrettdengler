@@ -77,7 +77,7 @@ $grid-bg: $purple;
     left:50%;
     opacity: 1;
     position: absolute;
-    transform: rotateX(30deg) rotateY(0deg) rotateZ(0deg) translate3d(-50%, 0, 0px);
+    transform: rotateX(30deg) rotateY(0deg) rotateZ(0deg) translate3d(-50%, 0, -1px);
     transition: transform 2s ease-in-out;
     // width: $grid-max * 1px;
     width: $grid-max;
