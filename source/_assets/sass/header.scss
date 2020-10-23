@@ -124,7 +124,8 @@
 
   @include element('start') {
     animation: blink 1s steps(5, start) infinite;
-    bottom: 50px;
+    // bottom: 50px;
+    bottom: 15%;
     color: #FFF;
     display: none;
     font-size: 24px;
@@ -159,7 +160,8 @@ $logo-time: 0.1s;
   left:50%;
   max-width: 100%;
   position: absolute;
-  top:50%;
+  // top:50%;
+  top: 33%;
   transform: translate(-50%, -50%);
   width: 60%;
   @include element('img') {
