@@ -84,6 +84,7 @@ $grid-bg: $purple;
     will-change: transform;
     z-index: 2;
     &::before {
+      will-change: transform;
       content: ' ';
       display: block;
       position: absolute;
