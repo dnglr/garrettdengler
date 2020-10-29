@@ -112,6 +112,7 @@
         vertical-align: middle;
         width: 130px;
         z-index: 1;
+        animation-name: none;
         @include element('img') {
           height: 100%;
           width: auto;
