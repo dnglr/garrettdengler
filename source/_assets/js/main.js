@@ -104,5 +104,5 @@ window.Site = {
 };
 
 $(function(){
-  window.Site.init();
+  $('.js-logo img').one('load', window.Site.init());
 });
