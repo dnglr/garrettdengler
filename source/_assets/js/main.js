@@ -45,15 +45,17 @@ window.Site = {
         $('.header__nav__toggle').click();
       }
     });
-    var logo = $('.js-logo').clone(), numLogos = 10, i;
-    for(i = 1; i < numLogos + 1; i++) {
-      tempLogo = logo.clone();
-      tempLogo.find('.logo__img').addClass('logo__img--'+i);
-      tempLogo.appendTo('.logo');
-      setTimeout(function(){
-        $('.logo').find('.js-logo').last().remove();
-      }, (numLogos * 250) - (i * 100))
-    }
+    const numLogos = 10;
+    // var logo = $('.js-logo').clone(), numLogos = 10, i;
+    // for(i = 1; i < numLogos + 1; i++) {
+    //   tempLogo = logo.clone();
+    //   tempLogo.find('.logo__img').addClass('logo__img--'+i);
+    //   tempLogo.appendTo('.logo');
+    //   setTimeout(function(){
+    //     $('.logo').find('.js-logo').last().remove();
+    //   }, (numLogos * 250) - (i * 100))
+    // }
+
     $('.grid__plane').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
       $('.grid').addClass('is-loaded');
       // Site.gridWorker = new Worker(window.gridjs);
@@ -102,5 +104,5 @@ window.Site = {
 };
 
 $(function(){
-  $('.js-logo img').one('load', window.Site.init());
+  window.Site.init();
 });
