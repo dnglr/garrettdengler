@@ -13,6 +13,23 @@
   }
 }
 
+// TODO: get rid of this enter and do a triangle behind it
+@keyframes logoEnter {
+  from {
+    transform: scale3d(0, 0, 0) translate3d(-50%, 0, 0);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1) translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes logoTriangle {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 @include block('header') {
   position: relative;
   z-index: 999;
@@ -91,10 +108,11 @@
         left:0;
         position: relative;
         top:0;
-        transform: none;
+        transform: none !important;
         vertical-align: middle;
         width: 130px;
         z-index: 1;
+        animation-name: none;
         @include element('img') {
           height: 100%;
           width: auto;
@@ -161,30 +179,68 @@ $logo-time: 0.1s;
   max-width: 100%;
   position: absolute;
   // top:50%;
-  top: 33%;
-  transform: translate(-50%, -50%);
+  top: 16%;
+  transform: scale3d(0, 0, 0) translate3d(-50%, 0, 0);
+  transform-origin: 0% 100%;
+  // transition: all ($logo-count * $logo-time) ease-in-out;
   width: 60%;
+  will-change: transform;
+  z-index: 4;
+  animation-name: logoEnter;
+  animation-duration: ($logo-count * $logo-time);
+  animation-delay: ($logo-count * $logo-time);
+  animation-fill-mode: forwards;
+  animation-direction: normal;
+  animation-timing-function: ease-in-out;
+
   @include element('img') {
     height: auto;
     left:0;
     position: relative;
-    transition: opacity $logo-time ease ($logo-count * $logo-time); 
+    // transition: opacity $logo-time ease ($logo-count * $logo-time); 
     width: 100%;
-    z-index: $logo-count;
-    @for $i from 1 to $logo-count+1 {
-      @include modifier($i) {
-        position: absolute;
-        top: ($i * 10px);
-        transform-origin: 50% 75%;
-        transform: scale(0.5 / $i);
-        transition-delay: ($logo-count - $i) * $logo-time;
-        z-index: $logo-count - $i;
-      }
+    z-index: 5;
+    // z-index: $logo-count;
+    // @for $i from 1 to $logo-count+1 {
+    //   @include modifier($i) {
+    //     position: absolute;
+    //     top: ($i * 10px);
+    //     transform-origin: 50% 75%;
+    //     transform: scale(0.5 / $i);
+    //     transition-delay: ($logo-count - $i) * $logo-time;
+    //     z-index: $logo-count - $i;
+    //   }
+    // }
+  }
+
+  @include element('triangle') {
+    position: absolute;
+    z-index: 1;
+    top: 60%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    opacity: 0.9;
+    height: 160%;
+    path {
+      animation-name: logoTriangle;
+      animation-duration: ($logo-count * $logo-time * 1.5);
+      animation-timing-function: ease-in-out;
+      animation-delay: ($logo-count * $logo-time * 2.5);
+      animation-fill-mode: forwards;
+      stroke-dasharray: 1320;
+      stroke-dashoffset: 1320;
+      stroke-linecap: round;
+    }
+    @include modifier('glow') {
+      filter: blur(10px);
+      transform: translate3d(-50%, -50%, 0) scale(1.02);
     }
   }
+
   @include state('hidden') {
-    .logo__img {
-      opacity: 0;
-    }
+    // transform: translate3d(-50%, 50%, -100px) scale(0);
+    // .logo__img {
+    //   opacity: 0;
+    // }
   }
 }
